@@ -1,11 +1,14 @@
 import util from '../../helpers/util';
 import boardData from '../../helpers/data/boardsData';
+import pins from '../pins/pins';
+import pinsData from '../../helpers/data/pinsData';
 
 const seePinDiv = (e) => {
   const boardId = e.target.closest('.card').id;
-  console.error('you clicked a button', boardId);
+  console.error('you clicked a button!', boardId);
   document.getElementById('boards-page').classList.add('hide');
   document.getElementById('pins-page').classList.remove('hide');
+  pins.initPins(boardId);
 };
 
 const bindEvents = () => {
@@ -15,14 +18,16 @@ const bindEvents = () => {
   }
 };
 
-const boardBuilder = (boards) => {
+const writeBoards = (boards) => {
   let domString = '';
   boards.forEach((board) => {
-    domString += `<div class="card col-3 p-2" id='${board.id}'>`;
+    domString += '<div class="col-3">';
+    domString += `<div id='${board.id}' class="card p-2">`;
     domString += '<div class="card-body">';
-    domString += `${board.name}`;
+    domString += `<h5 class="card-title">${board.name}</h5>`;
+    domString += `<button class="btn btn-warning see-pins">${board.pins.length} Pins</button>`;
     domString += '</div>';
-    domString += '<button class="btn btn-dark text-light see-pins">Pins</button>';
+    domString += '</div>';
     domString += '</div>';
   });
   util.printToDom('user-boards', domString);
@@ -31,10 +36,11 @@ const boardBuilder = (boards) => {
 
 const initBoards = () => {
   boardData.loadBoards()
-    .then((resp) => {
-      boardBuilder(resp.data.boards);
+    .then(resp => pinsData.getPinsForEachBoard(resp.data.boards))
+    .then((boardsWithPins) => {
+      writeBoards(boardsWithPins);
     })
-    .catch(err => console.error('error from loadBoards', err));
+    .catch(err => console.error('error from initBoards requests', err));
 };
 
-export default { initBoards, boardBuilder };
+export default { initBoards };
