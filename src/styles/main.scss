@@ -6,3 +6,35 @@ body {
 .hide {
   display: none;
 }
+
+#pins-on-board{
+  display: flex;
+  text-align: center;
+  flex-wrap: nowrap;
+  min-width: 600px;
+  flex-grow: 0;
+  -webkit-flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  height: 200px;
+  border: 1px solid BLACK;
+  box-shadow: 1px 2px 2px 1px;
+ 
+}
+.flex-wrap{
+  
+    display: flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    min-width: 600px;
+    flex-grow: 0;
+    -webkit-flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+
+}
