@@ -13,12 +13,13 @@ body {
   flex-wrap: nowrap;
   min-width: 600px;
   flex-grow: 0;
-  -webkit-flex-flow: row wrap;
+  padding:2rem;
   justify-content: center;
   align-content: center;
 }
 
 img {
+  padding:2rem;
   vertical-align: middle;
   border-style: none;
   height: 200px;
@@ -33,7 +34,6 @@ img {
     flex-wrap: nowrap;
     min-width: 600px;
     flex-grow: 0;
-    -webkit-flex-flow: row wrap;
     justify-content: center;
     align-content: center;
 
